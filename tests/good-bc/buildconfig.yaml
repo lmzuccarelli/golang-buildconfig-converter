@@ -1,0 +1,24 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: test
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/openshift/test'
+      ref: release-4.12
+    contextDir: .
+    images: []
+  strategy:
+    type: Docker
+    dockerStrategy:
+      imageOptimizationPolicy: SkipLayers
+      dockerfilePath: Dockerfile.ocp
+      from:
+        kind: "ImageStreamTag"
+        name: "release:base"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'release:itest'

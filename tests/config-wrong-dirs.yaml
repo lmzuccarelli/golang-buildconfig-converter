@@ -1,0 +1,9 @@
+apiVersion: 0.0.1
+kind: Config
+metadata:
+  name: converter-config
+spec:
+  workingDirectory: none/none
+  buildConfigPath: ../../tests/bad-bc
+  logLevel: info
+

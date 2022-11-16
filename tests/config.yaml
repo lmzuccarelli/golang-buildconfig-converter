@@ -1,0 +1,9 @@
+apiVersion: 0.0.1
+kind: Config
+metadata:
+  name: converter-config
+spec:
+  workingDirectory: ../../tests/working-dir
+  buildConfigPath: ../../tests/good-bc
+  logLevel: info
+

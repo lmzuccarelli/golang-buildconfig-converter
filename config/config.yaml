@@ -1,0 +1,9 @@
+apiVersion: 0.0.1
+kind: Config
+metadata:
+  name: converter-config
+spec:
+  workingDirectory: working-dir
+  buildConfigPath: ../okd-payload-pipeline/buildconfigs
+  logLevel: info
+
