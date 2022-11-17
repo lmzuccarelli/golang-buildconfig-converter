@@ -17,6 +17,8 @@ const (
 	errMsgUnmarshal string = "unmarshaling build config to struct %v for %s"
 )
 
+// mapToBuild function maps the BuildConfig to Build structure
+// this is the first pass and needs to be verified
 func mapToBuild(bc schema.BuildConfig) schema.Build {
 	b := schema.Build{}
 	b.Kind = build
@@ -30,6 +32,7 @@ func mapToBuild(bc schema.BuildConfig) schema.Build {
 	return b
 }
 
+// readAllBuildConfigs - reads all the BuildConfigs from a given directory
 func readAllBuildConfigs(dir string) ([]schema.BuildConfig, error) {
 	var bcs []schema.BuildConfig
 	var bc *schema.BuildConfig
@@ -56,6 +59,7 @@ func readAllBuildConfigs(dir string) ([]schema.BuildConfig, error) {
 	return bcs, nil
 }
 
+// readConfigFile - reads a config file to eliminate the need for complex cli parameters
 func readConfigFile(file string) (*schema.Config, error) {
 	var cfg *schema.Config
 	yfile, err := ioutil.ReadFile(file)
@@ -69,6 +73,8 @@ func readConfigFile(file string) (*schema.Config, error) {
 	return cfg, nil
 }
 
+// convertBuildConfigs - takes the list of BuildConfigs, maps them
+// to ashipwright Build struct, marshals to yaml and writes to disk
 func convertBuildConfigs(cfg *schema.Config, bcs []schema.BuildConfig) error {
 	for _, bc := range bcs {
 		b := mapToBuild(bc)

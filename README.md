@@ -1,16 +1,17 @@
-# A simple openshift buildconfig converter to shipwrite build manifests
+# A simple openshift buildconfig converter to shipwright build manifests
 
 ## Intro
 
 This is a simple golang projects that takes a set of openshift buildconfigs and converts them to the equivalent build manifests used in 'shipwright'.
 
-This was succesfully tested with golang 1.19.3
+This was succesfully tested with golang 1.19.3. 
+I have tried to keep coverage over 90%
 
 
 ### Clone the repository and build
 
 ```bash
-git clone git@github.com:luigizuccarelli/golang-buildconfig-converter
+git clone git@github.com:lmzuccarelli/golang-buildconfig-converter
 
 cd golang-buildconfig-converter-
 make clean
@@ -28,7 +29,7 @@ Execute the following command
 ```bash
 # setup a simple config.yaml file
 
-cat << EOF >| config.yaml
+cat << EOF > config.yaml
 apiVersion: 0.0.1
 kind: Config
 metadata:
@@ -39,7 +40,7 @@ spec:
 EOF
 
 
-# this will use the repositories text file to generate the shipwright builds to the working directory
+# this will generate the shipwright builds to the working directory
 ./build/convert -c config.yaml
 
 ```

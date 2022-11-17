@@ -11,6 +11,8 @@ const (
 	dir       string = "/manifests"
 )
 
+// Convert function that reads BuildConfigs from a directory and converts them to
+// shipwright build manifests
 func Convert(config string) error {
 
 	cfg, err := readConfigFile(config)
