@@ -8,7 +8,8 @@ type BuildConfig struct {
 	Kind       string `yaml:"kind"`
 	APIVersion string `yaml:"apiVersion"`
 	Metadata   struct {
-		Name string `yaml:"name"`
+		Name        string            `yaml:"name"`
+		Annotations map[string]string `yaml:"annotations"`
 	} `yaml:"metadata"`
 	Spec struct {
 		RunPolicy string `yaml:"runPolicy"`

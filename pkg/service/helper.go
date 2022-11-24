@@ -52,6 +52,9 @@ func readAllBuildConfigs(dir string) ([]schema.BuildConfig, error) {
 			}
 			// we are only interested in BuildConfigs
 			if bc.Kind == buildConfig {
+				// add the file name as an annotation
+				fmap := map[string]string{"fileRef": f.Name()}
+				bc.Metadata.Annotations = fmap
 				bcs = append(bcs, *bc)
 			}
 		}
@@ -82,7 +85,7 @@ func convertBuildConfigs(cfg *schema.Config, bcs []schema.BuildConfig) error {
 		if err != nil {
 			return fmt.Errorf(errMsgYaml, bc.Metadata.Name)
 		}
-		err = ioutil.WriteFile(cfg.Spec.WorkingDirectory+manifests+bc.Metadata.Name+dotYml, yml, 0755)
+		err = ioutil.WriteFile(cfg.Spec.WorkingDirectory+manifests+bc.Metadata.Annotations["fileRef"]+dotYml, yml, 0755)
 		if err != nil {
 			return err
 		}
