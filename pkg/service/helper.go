@@ -85,7 +85,7 @@ func convertBuildConfigs(cfg *schema.Config, bcs []schema.BuildConfig) error {
 		if err != nil {
 			return fmt.Errorf(errMsgYaml, bc.Metadata.Name)
 		}
-		err = ioutil.WriteFile(cfg.Spec.WorkingDirectory+manifests+bc.Metadata.Annotations["fileRef"]+dotYml, yml, 0755)
+		err = ioutil.WriteFile(cfg.Spec.WorkingDirectory+manifests+bc.Metadata.Annotations["fileRef"], yml, 0755)
 		if err != nil {
 			return err
 		}

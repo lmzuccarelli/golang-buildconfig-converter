@@ -20,14 +20,14 @@ func init() {
 
 func main() {
 	flag.Parse()
-	if help == "" {
+	if help == "" || configFile == "" {
 		flag.Usage()
 		os.Exit(1)
 	}
 
 	err := service.Convert(configFile)
 	if err != nil {
-		log.Fatalf("ERROR: generating shipwright buid files %v", err)
+		log.Fatalf("ERROR: generating shipwright build files %v", err)
 		os.Exit(1)
 	}
 	log.Print("INFO: completed generating shipwright build files")
